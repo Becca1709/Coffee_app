@@ -1,0 +1,235 @@
+body {
+  background-image: url("../src/assets/9384216.jpg");
+  background-size: cover;
+}
+.homepage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+/*app page*/
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-left: 20px;
+  justify-self: center;
+}
+.top {
+  width: 70%;
+  align-self: center;
+  margin-top: 0;
+}
+.top img {
+  border-radius: 0 0 50% 50%;
+}
+
+.app h1 {
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: white;
+  background-color: burlywood;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  justify-self: center;
+  width: 100%;
+  border-radius: 16px;
+}
+.selection h2 {
+  color: white;
+}
+.client_orders {
+  width: 70%;
+  min-height: fit-content;
+  justify-content: center;
+  justify-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  padding: 2em;
+  border-radius: 32px;
+  background-color: rgb(79, 54, 4);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 6px 6px rgba(108, 63, 3, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.menuimage {
+  width: 50vw;
+  display: flex;
+  padding-right: 20px;
+  justify-self: center;
+  justify-content: center;
+}
+.menuimage img {
+  height: 600px;
+}
+.grid-form {
+  display: grid;
+  grid-template-row: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: burlywood;
+  border-radius: 32px 0 32px 0;
+  box-shadow: 8px 12px 24px rgba(167, 130, 92, 0.288);
+  justify-content: center;
+  height: 4em;
+  text-align: center;
+  justify-content: center;
+  color: white;
+}
+
+.form-group {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 2px;
+  justify-items: center;
+}
+#no_form {
+  display: grid;
+  grid-template-row: 3fr 3fr;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: burlywood;
+  border-radius: 32px 0 32px 0;
+  box-shadow: 8px 12px 24px rgba(167, 130, 92, 0.288);
+  justify-content: center;
+  height: min-content;
+  text-align: center;
+  justify-content: center;
+  padding: 1em;
+}
+#selections {
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr;
+  gap: 2px;
+  justify-items: center;
+  margin-right: 0px;
+}
+
+#name-id {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2px;
+  justify-items: center;
+}
+.form-group label {
+  text-align: right;
+  text-wrap: balance;
+  padding-top: 0.5em;
+}
+.form-group button,
+#selections button {
+  padding: 0px 6px 0px 6px;
+  border-radius: 32px;
+  height: fit-content;
+  width: 80px;
+  align-self: center;
+  margin-right: 0.5em;
+  background-color: rgb(232, 153, 6);
+  box-shadow: 8px 6px 10px rgba(167, 130, 92, 0.288);
+  border: none;
+}
+#selections button :hover,
+.form-group button:hover {
+  background-color: rgb(79, 54, 4);
+}
+
+.form-group input {
+  width: 100%;
+}
+.form-group output {
+  justify-self: center;
+  align-self: center;
+  text-wrap: balance;
+  color: rgb(79, 54, 4);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.tittle {
+  color: white;
+  font-weight: 700;
+}
+/*autocomplete css*/
+
+.autocomplete-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+}
+
+.autocomplete-input {
+  left: 0;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.autocomplete-suggestions {
+  color: rgb(79, 79, 79);
+  position: absolute;
+  top: 28px;
+  left: 6px;
+  width: inherit;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.autocomplete-suggestion {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.autocomplete-suggestion:hover {
+  background-color: #f0f0f0;
+}
+.cd-form button {
+  width: fit-content;
+}
+@media screen and (min-width: 360px) and (max-width: 950px) {
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    width: 70%;
+    min-width: 360px;
+  }
+  .grid-form {
+    width: 300px;
+  }
+  .form-group {
+    width: 300px;
+  }
+  .client_orders {
+    width: 60vw;
+    min-width: 360px;
+  }
+  #menu {
+    width: 100vw;
+  }
+}
