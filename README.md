@@ -49,19 +49,6 @@ Make sure you have the following installed on your machine:
 
 ---
 
-### Installation & Setup
-
-#### 1. Clone the Repository
-```bash
-git clone [https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git](https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git)
-cd YOUR-REPOSITORY-NAME
-
-
-
-
-
-
-
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
