@@ -51,6 +51,12 @@ function App() {
             <img src="./src/assets/menu.jpg" height="800px" />
           </div>
         </section>
+        <section id="about">
+          <div className="about">
+            <h3>About this project</h3>
+            <p>Something something</p>
+          </div>
+        </section>
       </main>
     </>
   );

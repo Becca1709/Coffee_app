@@ -10,8 +10,8 @@ export function NavBar({ menu }) {
         <Container>
           <Navbar.Brand href="/">Office Coffee</Navbar.Brand>
           <Nav className="justify-content-end">
-            <Nav.Link onClick={menu}>Menu</Nav.Link>
-            <Nav.Link>About</Nav.Link>
+            <Nav.Link onClick={menu}>[Drinks Menu]</Nav.Link>
+            <Nav.Link href="/About">About</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
