@@ -129,7 +129,8 @@ body {
   padding-top: 0.5em;
 }
 .form-group button,
-#selections button {
+#selections button,
+.form-confirm button {
   padding: 0px 6px 0px 6px;
   border-radius: 32px;
   height: fit-content;
@@ -148,6 +149,7 @@ body {
 .form-group input {
   width: 100%;
 }
+
 .form-group output {
   justify-self: center;
   align-self: center;
@@ -158,6 +160,20 @@ body {
 .tittle {
   color: white;
   font-weight: 700;
+}
+
+/*Confirm form*/
+#confirm .grid-form {
+  width: 90%;
+  height: max-content;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: burlywood;
+  border-radius: 32px 0 32px 0;
+  box-shadow: 8px 12px 24px rgba(167, 130, 92, 0.288);
+  justify-content: center;
+  text-align: center;
+  justify-content: center;
 }
 /*autocomplete css*/
 

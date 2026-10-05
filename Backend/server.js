@@ -190,7 +190,7 @@ app.post("/orders/:id", async (req, res) => {
 });
 
 //delete clients order by id
-app.delete("/monks/:id", (req, res) => {
+app.delete("/orders/:id", (req, res) => {
   try {
     eraseLastOrder(req.params.id, (results) => {
       if (!results.success) {

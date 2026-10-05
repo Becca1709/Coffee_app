@@ -2,10 +2,9 @@ import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 
-export function Favorite() {
+export function Favorite({ setConfirmation, setLoading, setOrderId, loading }) {
   const { id } = useParams();
-  console.log("El ID del cliente recibido es:", id);
-  const [loading, setLoading] = useState(false);
+  //console.log("El ID del cliente recibido es:", id);
   const [favorite, setFavorite] = useState([]);
 
   //gets FAVORITE drink from USER
@@ -13,7 +12,7 @@ export function Favorite() {
     fetch(`http://localhost:3008/rank/${id}`)
       .then((response) => response.json())
       .then((favorite) => {
-        console.log(favorite);
+        //console.log(favorite);
         setFavorite(favorite);
       })
       .catch((error) => console.error("Error cargando datos:", error));
@@ -26,16 +25,13 @@ export function Favorite() {
 
     // Validación: Si no hay un ID de cliente válido, no podemos hacer el pedido
     if (!idRequest) {
-      console.warn(
-        "🛑 DETENIDO: 'idParaPeticion' está vacío. Revisa qué tienen tus variables:",
-        {
-          id: id,
-        },
-      );
+      console.warn("🛑 DETENIDO: 'id is missing. Check variables", {
+        id: id,
+      });
       return;
     }
     if (!favorite?.coffee_code) {
-      console.warn("🛑 DETENIDO: Falta el código del café");
+      console.warn("🛑: Coffee code is missing");
       return;
     }
 
@@ -65,8 +61,11 @@ export function Favorite() {
       }
 
       const data = await response.json();
-      alert("Order Successful!");
-      console.log("Favorite saved successfully:", data);
+      // const newOrderId = data.id;
+      //setOrderId(newOrderId);
+      setConfirmation(true);
+      //alert("Order Successful!");
+      console.log("The data is:", data);
     } catch (error) {
       console.error("Error saving favorite:", error);
     } finally {
