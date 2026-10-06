@@ -26,7 +26,7 @@ A full-stack, responsive web application designed for office environments to str
 ### Back-End
 * **Node.js**
 * **Express.js**
-* **MySQL** (Relational database management)
+* **MySQL** 
 
 ---
 
