@@ -15,8 +15,9 @@ const cors = require("cors");
 //cors
 app.use(
   cors({
-    origin: "*",
-    methods: ["GET"],
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
@@ -153,6 +154,35 @@ app.get("/orders", async (req, res) => {
     return res.json(data);
   });
 });
+//get the latest order from today
+app.get("/orders/latest", async (req, res) => {
+  const sql =
+    "SELECT * FROM coffee_orders WHERE DATE(date_order) = CURRENT_DATE ORDER BY id DESC LIMIT 1 ";
+  connection.query(sql, (err, data) => {
+    if (err) return res.status(500).json(err);
+    if (data.length === 0) return res.json({ latestOrder: null });
+
+    // Enviamos el objeto de la última orden
+    return res.json({ latestOrder: data[0] });
+  });
+});
+//delete lastest order
+app.delete("/orders/:id", async (req, res) => {
+  // Capturamos el número que viene en la URL usando req.params
+  const orderId = req.params.id;
+
+  const sql = "DELETE FROM coffee_orders WHERE id = ?";
+
+  connection.query(sql, [orderId], (err, result) => {
+    if (err) return res.status(500).json(err);
+
+    return res.json({
+      message: `Orden number ${orderId} deleted successfully`,
+      affectedRows: result.affectedRows,
+    });
+  });
+});
+
 //post favorite order to db
 app.post("/orders/:id", async (req, res) => {
   //  console.log('Backend received params.id:', req.params.id);
