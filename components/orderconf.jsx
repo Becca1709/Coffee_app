@@ -1,12 +1,15 @@
 import { Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLatestOrder } from "./useLastestOrder";
 import { useParams, useLocation } from "react-router-dom";
 
 export function Order_confirm({ confirmation, setConfirmation, orderId }) {
   //1#hooks
+  const timerRef = useRef(null);
+
   const [timeLeft, setTimeLeft] = useState(60);
   const { lastOrder, fetchLatest } = useLatestOrder();
+  const [orderStatus, setOrderStatus] = useState("");
 
   //2# useEffect
   useEffect(() => {
@@ -14,27 +17,30 @@ export function Order_confirm({ confirmation, setConfirmation, orderId }) {
       setTimeLeft(60);
       fetchLatest();
     }
-  }, [confirmation, fetchLatest]);
+  }, [confirmation]);
 
   useEffect(() => {
     // Only run timer if an order is active and time remains
     if (!confirmation || timeLeft <= 0) return;
-    const timer = setInterval(() => {
+    timerRef.current = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
     //  fetchLatest();
     // Clean up interval when component unmounts or state updates
-    return () => clearInterval(timer);
+    return () => clearInterval(timerRef.current);
   }, [confirmation, timeLeft]);
 
   //3#condional rendering
   if (!confirmation) return null;
+  //can it be here?
+
   const canDelete = timeLeft > 0;
 
   //fix this function
   const handleDeleteOrder = async (e) => {
     if (e) e.preventDefault();
     if (!confirmation) return;
+
     try {
       const response = await fetch(
         `http://localhost:3008/orders/${lastOrder}`,
@@ -52,9 +58,19 @@ export function Order_confirm({ confirmation, setConfirmation, orderId }) {
         throw new Error("Failed to delete the order.");
       }
       //setConfirmation(false);
-      setTimeLeft(0);
+      setOrderStatus("Order successfully deleted.");
+      // setTimeLeft(0);
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
       alert("Order deleted");
+
       await fetchLatest();
+
+      //setTimeout(() => {
+      //  setOrderStatus("");
+      //}, 10000);
+
       return console.log("Order deleted");
     } catch (error) {
       console.error("Error deleting order:", error);
@@ -62,29 +78,49 @@ export function Order_confirm({ confirmation, setConfirmation, orderId }) {
     }
   };
   return (
-    <div id="confirm">
-      <form className="grid-form">
-        <div className="form-confirm">
-          <label>Your order has been successfully placed!</label>
-          {canDelete ? (
-            <div>
-              <p>
-                Time to cancel: <strong>{timeLeft}</strong> seconds. this is
-                your order number is: {lastOrder}
-              </p>
-              <Button
-                size="sm"
-                type="button"
-                onClick={(e) => handleDeleteOrder()}
+    <>
+      <div id="confirm">
+        <form className="grid-form">
+          <div className="form-confirm">
+            {orderStatus && (
+              <div
+                style={{
+                  padding: "10px",
+                  backgroundColor: "#f5f6f5",
+                  color: "#cc4400",
+                  borderRadius: "5px",
+                  fontWeight: "bold",
+                  marginBottom: "15px",
+                  marginTop: "15px",
+                }}
               >
-                Delete Order
-              </Button>
-            </div>
-          ) : (
-            <p>The 60-sec window has passed.</p>
-          )}
-        </div>
-      </form>
-    </div>
+                {orderStatus}
+              </div>
+            )}
+            {canDelete && !orderStatus && (
+              <div>
+                <p>Your order has been successfully placed!</p>
+                <p>
+                  Time to cancel: <strong>{timeLeft}</strong> seconds.
+                </p>
+                <p>your order number is: {lastOrder}</p>
+                <Button
+                  size="sm"
+                  type="button"
+                  onClick={(e) => handleDeleteOrder()}
+                >
+                  Delete Order
+                </Button>
+              </div>
+            )}
+            {timeLeft === 0 && (
+              <>
+                <p>Can't delete any more</p>
+              </>
+            )}
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

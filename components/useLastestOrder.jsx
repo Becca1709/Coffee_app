@@ -1,27 +1,5 @@
 import { useState, useCallback } from "react";
 
-/*export function useLatestOrder() {
-const [lastOrder, setLastOrder] = useState(null);
-const [isLoading, setIsLoading] = useState(false);
-
-const fetchLatest = useCallback(() => {
-  setIsLoading(true);
-
-  fetch(`http://localhost:3008/orders/`)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.lastOrder) {
-        const numberId = data.lastestOrder[0].id;
-        console.log("data from fecthlatest:", data);
-        setLastOrder(numberId);
-      }
-    })
-    .catch((error) => console.error("Error cargando datos:", error))
-    .finally(() => setIsLoading(false));
-}, [setLastOrder]);
-return { lastOrder, isLoading, fetchLatest };
-}*/
-
 export function useLatestOrder() {
   const [lastOrder, setLastOrder] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
