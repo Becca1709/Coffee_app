@@ -1,5 +1,7 @@
 # Office Coffee Order Manager
 
+A mobile and web application designed exclusively for corporate campuses, allowing employees to customize and order coffee directly from their desks to skip the cafeteria lines and boost daily productivity.
+
 A full-stack, responsive web application designed for office environments to streamline coffee orders for the office. Built with React, Vite, Bootstrap, Node.js, Express, and MySQL.
 
 > 🛠️ **Project Status:** *Work in Progress (WIP)* — Currently implements core CRUD functionality: adding new orders directly updates the MySQL database, and existing orders are dynamically fetched and displayed on the front end.
